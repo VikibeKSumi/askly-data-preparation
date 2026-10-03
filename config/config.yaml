@@ -1,4 +1,4 @@
 
 
-data:
-  path: "./data"
+cloud:
+  bucket_name: "askly-bucket"
