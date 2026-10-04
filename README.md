@@ -6,15 +6,14 @@ An ETL pipeline for data that will be used to convert to chunks in the ingestion
 
 | Repo | Role |
 |---|---|
-| [askly-data-preparation](https://github.com/VikibeKSumi/askly-data-preparation) | Raw docs → clean JSON (ETL) |
-| **askly-ingestion** (this repo) | Clean JSON → chunks → embeddings → Pinecone |
+| **askly-data-preparation** (this repo) | Raw docs → clean JSON (ETL) |
+| [askly-ingestion](https://github.com/VikibeKSumi/askly-ingestion) | Clean JSON → chunks → embeddings → Pinecone |
 | [askly](https://github.com/VikibeKSumi/askly) | RAG app: query → answer |
 
-**Input:** clean JSON at `s3://askly-bucket/clean/`, produced by
-[askly-data-preparation](https://github.com/VikibeKSumi/askly-data-preparation).
-**Output:** records in Pinecone index `askly-index`, namespace `askly-namespace`
-(fields: `text`, `embedding` (1024-d), `sparse_value`, metadata), read by
-[askly](https://github.com/VikibeKSumi/askly).
+**Input:** raw markdown at `s3://askly-bucket/raw/`
+**Output:** one JSON per document at `s3://askly-bucket/clean/<id>.json`
+(fields: `id`, `title`, metadata, `source_uri`, `text`), consumed by
+[askly-ingestion](https://github.com/VikibeKSumi/askly-ingestion).
 
 
 
