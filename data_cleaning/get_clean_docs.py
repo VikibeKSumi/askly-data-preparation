@@ -30,9 +30,10 @@ if __name__ == "__main__":
     import boto3
     from dotenv import load_dotenv
     load_dotenv()
+    from config.config import config
 
     s3 = boto3.client("s3")
-    bucket_name = "askly-bucket"
+    bucket_name = config["could"]["askly-bucket"]
     docs = get_clean_docs(client=s3, bucket_name=bucket_name, raw_prefix="raw/")
     for doc in docs:
         doc["text"] = ""

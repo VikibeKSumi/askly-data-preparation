@@ -11,7 +11,10 @@ def load_doc_from_cloud(client : BaseClient, bucket_name: str, key: str):
 
 if __name__ == "__main__":
     import boto3
+    from config.config import config
     from dotenv import load_dotenv
     load_dotenv()
     
-    print(load_doc_from_cloud(client=boto3.client('s3'), bucket_name="askly-bucket", key="company_operations.md"))
+    s3 = boto3.client("s3")
+    bucket_name = config["could"]["askly-bucket"]
+    print(load_doc_from_cloud(client=boto3.client('s3'), bucket_name=bucket_name, key="company_operations.md"))
