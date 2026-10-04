@@ -1,4 +1,5 @@
 
-
 cloud:
   bucket_name: "askly-bucket"
+  raw_prefix: "raw/"
+  clean_prefix: "clean/"

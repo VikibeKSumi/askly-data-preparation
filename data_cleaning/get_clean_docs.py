@@ -2,7 +2,7 @@ from botocore.client import BaseClient
 from pathlib import Path
 
 from data_cleaning.clean_markdown import clean_markdown
-from data_cleaning.clean_markdown import extract_metadata
+from data_cleaning.extract_metadata import extract_metadata
 from data_cloud.load_doc_from_cloud import load_doc_from_cloud
 
 
