@@ -16,5 +16,9 @@ if __name__ == "__main__":
     load_dotenv()
     
     s3 = boto3.client("s3")
-    bucket_name = config["could"]["askly-bucket"]
-    print(load_doc_from_cloud(client=boto3.client('s3'), bucket_name=bucket_name, key="company_operations.md"))
+    BUCKET_NAME = config.BUCKET_NAME
+    RAW_PREFIX = config.RAW_PREFIX
+    list_object = s3.list_objects_v2(Bucket=BUCKET_NAME, Prefix=RAW_PREFIX)
+    keys = [obj["Key"] for obj in list_object.get("Contents") if not obj["Key"].endswith("/")]
+    
+    print(load_doc_from_cloud(client=boto3.client('s3'), bucket_name=BUCKET_NAME, key=keys[0]))

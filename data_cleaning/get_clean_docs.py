@@ -33,8 +33,10 @@ if __name__ == "__main__":
     from config.config import config
 
     s3 = boto3.client("s3")
-    bucket_name = config["could"]["askly-bucket"]
-    docs = get_clean_docs(client=s3, bucket_name=bucket_name, raw_prefix="raw/")
+    BUCKET_NAME = config.BUCKET_NAME
+    RAW_PREFIX = config.RAW_PREFIX
+    
+    docs = get_clean_docs(client=s3, bucket_name=BUCKET_NAME, raw_prefix=RAW_PREFIX)
     for doc in docs:
         doc["text"] = ""
         print(doc)
